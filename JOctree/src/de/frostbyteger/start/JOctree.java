@@ -3,7 +3,8 @@
  */
 package de.frostbyteger.start;
 
-import java.awt.EventQueue;
+import de.frostbyteger.core.JOC3D;
+import de.frostbyteger.engine.OctreeController;
 
 /**
  * @author Kevin Kuegler
@@ -12,25 +13,12 @@ import java.awt.EventQueue;
 public class JOctree {
 
 	/**
-	 * 
-	 */
-	public JOctree() {
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					//PasswordGenGUI frame = new PasswordGenGUI();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		JOC3D joc = new JOC3D();
+		new OctreeController(joc);
+		joc.start();
 	}
 
 }
