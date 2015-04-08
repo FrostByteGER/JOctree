@@ -35,7 +35,6 @@ public class OctreeController {
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>FINISHED<<<<<<<<<<<<<<<<<<<<<");
 		System.out.println("Time elapsed: " + time / 1000000000.0 + "s");
 		System.out.println("Total Nodes: " + nodes);
-		clear();
 	}
 	
 	/**
