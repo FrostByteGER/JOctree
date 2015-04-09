@@ -50,7 +50,7 @@ public class JOC3D {
 	    GL11.glLoadIdentity();
 	    GL11.glOrtho(-30, 30, -30, 30, -100000, 100000);
 	    GL11.glMatrixMode(GL11.GL_MODELVIEW);
-	    int x=0;
+	    //int x=0;
 	    Mouse.setGrabbed(true);
 	    lastFPS = getTime(); // call before loop to initialise fps timer
 	    while (!Display.isCloseRequested() && !Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
