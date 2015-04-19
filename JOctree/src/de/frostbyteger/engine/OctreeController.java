@@ -9,12 +9,12 @@ import de.frostbyteger.core.JOC3D;
  * @author Kevin Kuegler
  * @version 1.00
  */
-public class OctreeController {
+public class OctreeController extends Thread{
 
 	/** Length of the Octree-Array */
 	private final int octreeLength = 8;
 	/** Depth of the whole Octree */
-	private final int depth = 1;
+	private final int depth = 2;
 	/** The first Octree-Node. Acts as a fake-Root */
 	private OctreeNode first;
 	/** The total count of Octree-Nodes */
@@ -29,6 +29,11 @@ public class OctreeController {
 	public OctreeController(JOC3D joc) {
 		this.joc = joc;
 		nodes = 0;
+		start();
+	}
+	
+	@Override
+	public void run() {
 		long startTime = System.nanoTime();
 		first = new OctreeNode(this, null, 0, 16, new Vector3f(0.0f, 0.0f, 0.0f));
 		long time = System.nanoTime() - startTime;

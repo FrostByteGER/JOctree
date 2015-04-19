@@ -27,8 +27,8 @@ public class JOC3D {
     /** last fps time */
     public long lastFPS;
     
-    private ArrayList<Vector3f> blocks = new ArrayList<Vector3f>();
-    private ArrayList<Float> blocksScale = new ArrayList<Float>();
+    private ArrayList<Vector3f> blocks = new ArrayList<Vector3f>(0);
+    private ArrayList<Float> blocksScale = new ArrayList<Float>(0);
     private Camera camera =  new Camera(0.0f, 0.0f, 0.0f);
     
     private float mouseSensitivity = 0.10f;
@@ -71,9 +71,9 @@ public class JOC3D {
 	        GL11.glColor3f(1, 0, 0);
 	        
 	        GL11.glTranslatef(0, 0, 0);
-	        for(int i  = 0;i < blocks.size();i++){
-	        	renderCube(blocks.get(i), blocksScale.get(i));
-	        }
+		    for(int i  = 0;i < blocks.size();i++){
+		    	renderCube(blocks.get(i), blocksScale.get(i));
+		    }
 	        //renderCube((float)((Math.sin(Math.toRadians(x++)))*660.0f), 20.0f);
 	        
 	        GL11.glLoadIdentity();
