@@ -4,6 +4,7 @@
 package de.frostbyteger.core;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.Sys;
@@ -27,8 +28,8 @@ public class JOC3D {
     /** last fps time */
     public long lastFPS;
     
-    private ArrayList<Vector3f> blocks = new ArrayList<Vector3f>(0);
-    private ArrayList<Float> blocksScale = new ArrayList<Float>(0);
+    private Vector<Vector3f> blocks = new Vector<Vector3f>(0);
+    private Vector<Float> blocksScale = new Vector<Float>(0);
     private Camera camera =  new Camera(0.0f, 0.0f, 0.0f);
     
     private float mouseSensitivity = 0.10f;
@@ -72,6 +73,9 @@ public class JOC3D {
 	        
 	        GL11.glTranslatef(0, 0, 0);
 		    for(int i  = 0;i < blocks.size();i++){
+		    	
+		    	System.out.println(blocks.get(i) + "-----" + blocksScale.get(i));
+		    	System.out.println(i);
 		    	renderCube(blocks.get(i), blocksScale.get(i));
 		    }
 	        //renderCube((float)((Math.sin(Math.toRadians(x++)))*660.0f), 20.0f);
@@ -147,28 +151,28 @@ public class JOC3D {
 	/**
 	 * @return the blocks
 	 */
-	public ArrayList<Vector3f> getBlocks() {
+	public Vector<Vector3f> getBlocks() {
 		return blocks;
 	}
 
 	/**
 	 * @param blocks the blocks to set
 	 */
-	public void setBlocks(ArrayList<Vector3f> blocks) {
+	public void setBlocks(Vector<Vector3f> blocks) {
 		this.blocks = blocks;
 	}
 
 	/**
 	 * @return the blocksScale
 	 */
-	public ArrayList<Float> getBlocksScale() {
+	public Vector<Float> getBlocksScale() {
 		return blocksScale;
 	}
 
 	/**
 	 * @param blocksScale the blocksScale to set
 	 */
-	public void setBlocksScale(ArrayList<Float> blocksScale) {
+	public void setBlocksScale(Vector<Float> blocksScale) {
 		this.blocksScale = blocksScale;
 	}
 
