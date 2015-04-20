@@ -11,18 +11,19 @@ import de.frostbyteger.engine.OctreeController;
  * @version 1.00
  */
 public class JOctree {
-
+	
 	/**
 	 * @param args
+	 * @throws InterruptedException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		JOC3D joc = new JOC3D();
 		OctreeController oc = new OctreeController(joc);
 		int count = oc.calculateEstimatedCount();
 		long startTime = System.nanoTime();
 		oc.start();
 		while(true){
-			System.out.println(count + " | " + oc.getNodeCount());
+			Thread.sleep(1L);
 			if(count == oc.getNodeCount()){
 				
 				long time = System.nanoTime() - startTime;
