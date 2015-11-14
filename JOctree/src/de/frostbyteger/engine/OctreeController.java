@@ -23,7 +23,6 @@ public class OctreeController extends Thread{
 	private int nodes;
 	/** Reference to the LWJGL Object */
 	private JOC3D joc;
-	
 	/**
 	 * Default Constructor
 	 * @param joc The LWJGL-Object
@@ -31,17 +30,13 @@ public class OctreeController extends Thread{
 	public OctreeController(JOC3D joc) {
 		this.joc = joc;
 		nodes = 0;
-		start();
+		//start();
 	}
 	
 	@Override
 	public void run() {
-		long startTime = System.nanoTime();
+		
 		first = new OctreeNode(this, null, 0, 16, new Vector3f(0.0f, 0.0f, 0.0f));
-		long time = System.nanoTime() - startTime;
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>FINISHED<<<<<<<<<<<<<<<<<<<<<");
-		System.out.println("Time elapsed: " + time / 1000000000.0 + "s");
-		System.out.println("Total Nodes: " + nodes);
 	}
 	
 	/**
@@ -53,6 +48,15 @@ public class OctreeController extends Thread{
 		getJoc().getBlocksScale().remove(first.getLength());
 		first = null;
 		decreaseNode();
+	}
+	
+	public int calculateEstimatedCount(){
+		int count = 0;
+		for(int i = 0;i <= depth;i++){
+			System.out.println(i);
+			count += Math.pow(octreeLength, i);
+		}
+		return count;
 	}
 	
 	/**
@@ -74,15 +78,19 @@ public class OctreeController extends Thread{
 	/**
 	 * Increases the Count of Octree-Nodes
 	 */
-	public void increaseNode(){
+	public synchronized void increaseNode(){
 		nodes++;
 	}
 	
 	/**
 	 * Decreases the count of Octree-Nodes
 	 */
-	public void decreaseNode(){
+	public synchronized void decreaseNode(){
 		nodes--;
+	}
+	
+	public int getNodeCount(){
+		return nodes;
 	}
 	
 	/**

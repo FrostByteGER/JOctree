@@ -47,12 +47,13 @@ public class OctreeNode extends Thread{
 	
 	public void subdivide(){
 		float length = this.length/2.0f;
+		/*
 		try {
-			Thread.sleep(4000);
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		childs[0] = new OctreeNode(root, this, level + 1, length, new Vector3f(position.getX() + length, position.getY() + length, position.getZ() + length)); //+++
 		childs[1] = new OctreeNode(root, this, level + 1, length, new Vector3f(position.getX() - length, position.getY() + length, position.getZ() + length)); //-++
 		childs[2] = new OctreeNode(root, this, level + 1, length, new Vector3f(position.getX() - length, position.getY() - length, position.getZ() + length)); //--+
