@@ -76,6 +76,77 @@ public class OctreeNode extends Thread{
 		}
 	}
 	
+	/*
+	 * Determine which node the object belongs to. -1 means
+	 * object cannot completely fit within a child node and is part
+	 * of the parent node
+	 */
+	 private int getIndex(Object obj) {
+	   int index = -1;
+	   double verticalMidpoint = bounds.getX() + length;
+	   double horizontalMidpoint = bounds.getY() + length;
+	 
+	   // Object can completely fit within the top quadrants
+	   boolean topQuadrant = (pRect.getY() < horizontalMidpoint && pRect.getY() + pRect.getHeight() < horizontalMidpoint);
+	   // Object can completely fit within the bottom quadrants
+	   boolean bottomQuadrant = (pRect.getY() > horizontalMidpoint);
+	 
+	   // Object can completely fit within the left quadrants
+	   if (pRect.getX() < verticalMidpoint && pRect.getX() + pRect.getWidth() < verticalMidpoint) {
+	      if (topQuadrant) {
+	        index = 1;
+	      }
+	      else if (bottomQuadrant) {
+	        index = 2;
+	      }
+	    }
+	    // Object can completely fit within the right quadrants
+	    else if (pRect.getX() > verticalMidpoint) {
+	     if (topQuadrant) {
+	       index = 0;
+	     }
+	     else if (bottomQuadrant) {
+	       index = 3;
+	     }
+	   }
+	 
+	   return index;
+	 }
+	 
+	 /*
+	  * Insert the object into the quadtree. If the node exceeds the capacity, it
+	  * will split and add all objects to their corresponding nodes.
+	  */
+	 public void insert(Object obj) {
+		 if (childs[0] != null) {
+			 int index = getIndex(obj);
+
+			 if (index != -1) {
+				 childs[index].insert(obj);
+
+				 return;
+			 }
+		 }
+
+		 objects[0] = obj;
+
+		 if (objects.length > root.getMaxObjects() && level < root.getDepth()) {
+			 if (childs[0] == null) {
+				 subdivide();
+			 }
+
+			 int i = 0;
+			 while (i < objects.length) {
+				 int index = getIndex(objects[i]);
+				 if (index != -1) {
+					 childs[index].insert(objects[i] = null);
+				 } else {
+					 i++;
+				 }
+			 }
+		 }
+	 }
+
 
 	@Override
 	public void run() {
