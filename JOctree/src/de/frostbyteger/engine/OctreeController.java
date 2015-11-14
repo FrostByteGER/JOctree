@@ -12,11 +12,11 @@ import de.frostbyteger.core.JOC3D;
 public class OctreeController extends Thread{
 
 	/** Length of the Octree-Array */
-	private final int OCTREE_LENGTH = 8;
+	public final int OCTREE_LENGTH = 8;
 	/** Depth of the whole Octree */
-	private final int DEPTH = 2;
+	public final int DEPTH = 3;
 	/***/
-	private final int MAX_OBJECTS = 3;
+	public final int MAX_OBJECTS = 3;
 	/** The first Octree-Node. Acts as a fake-Root */
 	private OctreeNode first;
 	/** The total count of Octree-Nodes */
@@ -52,27 +52,11 @@ public class OctreeController extends Thread{
 	
 	public int calculateEstimatedCount(){
 		int count = 0;
-		for(int i = 0;i <= depth;i++){
+		for(int i = 0;i <= DEPTH;i++){
 			System.out.println(i);
-			count += Math.pow(octreeLength, i);
+			count += Math.pow(OCTREE_LENGTH, i);
 		}
 		return count;
-	}
-	
-	/**
-	 * Returns the Depth of this Octree
-	 * @return the Depth
-	 */
-	public int getDepth(){
-		return DEPTH;
-	}
-	
-	/**
-	 * Returns the Length of the Octree
-	 * @return The OctreeLength
-	 */
-	public int getOctreeLength(){
-		return OCTREE_LENGTH;
 	}
 	
 	/**
@@ -99,13 +83,6 @@ public class OctreeController extends Thread{
 	 */
 	public JOC3D getJoc(){
 		return joc;
-	}
-
-	/**
-	 * @return the mAX_OBJECTS
-	 */
-	public int getMaxObjects() {
-		return MAX_OBJECTS;
 	}
 
 }

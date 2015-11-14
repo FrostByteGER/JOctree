@@ -34,7 +34,7 @@ public class JOctree {
 				break;
 			}
 		}
-		//joc.start();
+		joc.start();
 	}
 
 }

@@ -31,7 +31,7 @@ public class OctreeNode extends Thread{
 		this.root = root;
 		this.level = level;
 		this.parent = parent;
-		this.childs = new OctreeNode[root.getOctreeLength()];
+		this.childs = new OctreeNode[root.OCTREE_LENGTH];
 		objects = new Object[]{};
 		this.length = length;
 		this.position = position;
@@ -81,6 +81,7 @@ public class OctreeNode extends Thread{
 	 * Determine which node the object belongs to. -1 means
 	 * object cannot completely fit within a child node and is part
 	 * of the parent node
+	 * TODO: Needs to be fixed
 	 */
 	 private int getIndex(Object obj) {
 	   int index = -1;
@@ -131,7 +132,7 @@ public class OctreeNode extends Thread{
 
 		 objects[0] = obj;
 
-		 if (objects.length > root.getMaxObjects() && level < root.getDepth()) {
+		 if (objects.length > root.MAX_OBJECTS && level < root.DEPTH) {
 			 if (childs[0] == null) {
 				 subdivide();
 			 }
@@ -151,7 +152,7 @@ public class OctreeNode extends Thread{
 
 	@Override
 	public void run() {
-		if(level < root.getDepth()){
+		if(level < root.DEPTH){
 			subdivide();
 		}
 	}
