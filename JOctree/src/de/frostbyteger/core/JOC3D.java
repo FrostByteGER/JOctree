@@ -55,7 +55,7 @@ public class JOC3D {
 	    Mouse.setGrabbed(true);
 	    lastFPS = getTime(); // call before loop to initialise fps timer
 	    while (!Display.isCloseRequested() && !Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
-	        Display.sync(60);
+	        //Display.sync(0);
 
 	        dx = Mouse.getDX();
 	        dy = Mouse.getDY();

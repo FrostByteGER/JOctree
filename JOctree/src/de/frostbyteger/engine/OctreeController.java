@@ -14,7 +14,7 @@ public class OctreeController extends Thread{
 	/** Length of the Octree-Array */
 	public final int OCTREE_LENGTH = 8;
 	/** Depth of the whole Octree */
-	public final int DEPTH = 3;
+	public final int DEPTH = 1;
 	/***/
 	public final int MAX_OBJECTS = 3;
 	/** The first Octree-Node. Acts as a fake-Root */
